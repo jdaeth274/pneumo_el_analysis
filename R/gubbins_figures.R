@@ -111,13 +111,14 @@ pmen9_phandango$x_val <- seq(1, nrow(pmen9_phandango))
 pmen9_phandango$y_val <- seq(1, nrow(pmen9_phandango))
 pmen9_phandango$density <- rnorm(nrow(pmen9_phandango), mean = 10)
 
+plot_cols <- country_colours[-c(1,12),]
 ggplot(data = pmen9_phandango, aes(x = Country, y = y_val , colour = Country, fill = Country)) +
-  geom_bar(stat = "identity") + scale_fill_manual(values = country_colours$colour, breaks = country_colours$country[2:nrow(country_colours)]) +
-  scale_color_manual(values = country_colours$colour, breaks = country_colours$country[2:nrow(country_colours)])
+  geom_bar(stat = "identity") + scale_fill_manual(values = country_colours$colour, breaks = plot_cols$country) +
+  scale_color_manual(values = country_colours$colour, breaks = plot_cols$country)
 
 ggplot(data = pmen9_phandango, aes(x = Clade, y = y_val , colour = Clade, fill = Clade)) +
-  geom_bar(stat = "identity") + scale_fill_manual(values = clade_colors) +
-  scale_color_manual(values = clade_colors)
+  geom_bar(stat = "identity") + scale_fill_manual(values = clade_colors,breaks = c("German","South African","USA","Other")) +
+  scale_color_manual(values = clade_colors, breaks = c("German","South African","USA","Other"))
 
 
 

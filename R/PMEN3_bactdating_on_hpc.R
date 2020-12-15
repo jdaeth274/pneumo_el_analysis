@@ -5,6 +5,22 @@
 require(devtools)
 require(ape)
 
+parse_args <- function(){
+  input_args <- commandArgs(trailingOnly = TRUE)
+  
+  if(length(input_args) != 6){
+    cat("Not enough arguments, need 6, you have:", length(input_args), "\n")
+    cat("\n")
+    cat("Usage: Rscript --vanilla ./PMEN3_bactdating_on_hpc.R <run_install(Y/N)> <gubbins_loc> <dating_df> <model> <iterations> <output_loc>")
+    cat("\n")
+    cat("\n")
+    stop("Not enough input files")
+  }
+  
+  return(input_args)
+}
+
+
 ## set up the input options ##
 
 input_args <- parse_args()
