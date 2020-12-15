@@ -40,23 +40,23 @@ if(run_install == "Y"){
 require(BactDating)
 ## Run tree
 
-cat("Reading in the Dating csv")
+cat("Reading in the Dating csv \n")
 re_ordered_central_df <- read.csv(dating_df, stringsAsFactors = FALSE)
 
 ## Get gubb tree 
-cat("Loading the gubbins results")
+cat("Loading the gubbins results \n")
 total_gub_tree <- loadGubbins(gubbins_loc)
-cat("Splitting the tip labels")
+cat("Splitting the tip labels \n")
 gub_labs <- total_gub_tree$tip.label
 split_labs <- str_split_fixed(gub_labs, "_\\.",2)
 
 total_gub_tree$tip.label <- split_labs[, 1]
 
-cat("Trimming the Tree")
+cat("Trimming the Tree \n")
 central_gub_tree <- keep.tip(total_gub_tree, tip = re_ordered_central_df$id)
 
 dec_datio <- re_ordered_central_df$dec_date
-cat("Running the reconstruction")
+cat("Running the reconstruction \n")
 central_res <- BactDating::bactdate(ape::unroot(central_gub_tree),
                                                 dec_datio, showProgress = T,
                                                 nbIts = iterations, model = tree_model, useRec = T)
