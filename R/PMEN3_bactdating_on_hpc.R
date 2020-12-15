@@ -4,6 +4,7 @@
 
 require(devtools)
 require(ape)
+require(stringr)
 
 parse_args <- function(){
   input_args <- commandArgs(trailingOnly = TRUE)
