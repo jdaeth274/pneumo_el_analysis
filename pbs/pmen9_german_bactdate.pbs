@@ -1,0 +1,20 @@
+#PBS -l select=1:ncpus=1:mem=2gb
+#PBS -l walltime=24:00:00
+
+start=$SECONDS
+
+module load anaconda3/personal
+
+source activate 
+
+conda activate insertion_site_analysis
+
+cd /rds/general/user/jd2117/home/bactdating_test/
+
+Rscript --vanilla ./pneumo_el_analysis/R/general_bactdating.R N ./PMEN9_gubbins \
+./re_ordered_162_df.csv relaxedgamma 50000000 ./50_mil_pmen9_162.RData 
+
+time=$(( SECONDS - start ))
+echo "${time} (s)" > pmen9_german_length.txt
+
+

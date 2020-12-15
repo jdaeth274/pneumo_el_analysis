@@ -12,7 +12,7 @@ conda activate insertion_site_analysis
 cd /rds/general/user/jd2117/home/bactdating_test/
 
 Rscript --vanilla ./pneumo_el_analysis/R/PMEN3_bactdating_on_hpc.R N ./ungapped.PMEN3 \
-./re_ordered_whole_tree_df.csv arc 10000000 ./ten_mil_PMEN3_arc.RData
+./re_ordered_whole_tree_df.csv relaxedgamma 10000000 ./ten_mil_PMEN3_arc.RData
 
 time=$(( SECONDS - start ))
 echo "${time} (s)" > pmen3_bactdating_length.txt
