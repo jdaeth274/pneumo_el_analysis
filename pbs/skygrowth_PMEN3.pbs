@@ -1,0 +1,21 @@
+#PBS -l select=1:ncpus=1:mem=2gb
+#PBS -l walltime=24:00:00
+
+START_TIME=$SECONDS
+
+module load anaconda3/personal
+
+source activate 
+
+conda activate insertion_site_analysis
+
+cd /rds/general/user/jd2117/home/bactdating_test/
+
+Rscript --vanilla pneumo_el_analysis/R/skygrowth_no_covariate.R whole_tree_relaxed_gamma_bactdating\
+re_ordered_whole_tree_df.csv 10000000 PMEN3_bactdating_ST156.RData
+
+END_TIME=$(( SECONDS - START_TIME ))
+
+echo "${END_TIME} (s)" > PMEN3_skygrowth_ST156_time.txt
+
+

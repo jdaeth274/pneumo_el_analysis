@@ -1,0 +1,21 @@
+#PBS -l select=1:ncpus=1:mem=4gb
+#PBS -l walltime=72:00:00
+
+start=$SECONDS
+
+module load anaconda3/personal
+
+source activate
+
+conda activate insertion_site_analysis
+
+cd /rds/general/user/jd2117/home/bactdating_test/
+
+Rscript --vanilla ./pneumo_el_analysis/R/PMEN3_bactdating_on_hpc.R N ./ungapped.PMEN3 \
+./ST156_ordered_dating.csv relaxedgamma 50000000 ./fifty_mil_PMEN3_ST156.RData
+
+time=$(( SECONDS - start ))
+echo "${time} (s)" > pmen3_ST156_bactdating_length.txt
+
+
+
