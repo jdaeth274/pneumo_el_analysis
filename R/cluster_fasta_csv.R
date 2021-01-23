@@ -17,5 +17,5 @@ lane_ids <- sub("\\.velvet\\.fasta","",basename(cluster_fastas))
 out_csv <- cbind.data.frame(lane_ids, gpsc_name)
 colnames(out_csv) <- c("Lane_name", "gpsc")
 
-write.csv(out_csv, file = paste("./",gpsc_name[1],"_fastas_list.csv"),
+write.csv(out_csv, file = paste("./",gpsc_name[1],"_fastas_list.csv",sep = ""),
           row.names = FALSE)
